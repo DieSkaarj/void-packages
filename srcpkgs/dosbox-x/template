@@ -1,0 +1,33 @@
+# Template file for 'dosbox-x'
+pkgname=dosbox-x
+version=2026.08.31  # Set this to the version you wish to target
+revision=1
+build_style=gnu-configure
+configure_args="--enable-sdl2 --with-ffmpeg"
+hostmakedepends="pkg-config nasm automake libtool"
+makedepends="alsa-lib-devel libX11-devel libXext-devel freetype-devel
+ ncurses-devel zlib-devel libpng-devel libpcap-devel libslirp-devel
+ glib-devel libXrandr-devel libxkbfile-devel fluidsynth-devel
+ libxcb-devel brotli-devel libnl3-devel pcre2-devel libXrender-devel
+ libsndfile-devel pulseaudio-devel portaudio-devel jack-devel
+ pipewire-devel dbus-devel SDL2-devel readline-devel libXau-devel
+ libXdmcp-devel libflac-devel libvorbis-devel opus-devel libogg-devel
+ mpg123-devel lame-devel libsamplerate-devel libXcursor-devel
+ libXi-devel libXfixes-devel libXScrnSaver-devel libXtst-devel
+ wayland-devel libxkbcommon-devel libdecor-devel libasyncns-devel
+ libffi-devel ffmpeg-devel"
+short_desc="Cross-platform DOS emulator with focus on precision and features"
+maintainer="David Cummings <dieskaarj@proton.com>"
+license="GPL-2.0-or-later"
+homepage="https://dosbox-x.com/"
+distfiles="https://github.com/joncampbell123/dosbox-x/archive/refs/tags/dosbox-x-v${version}.tar.gz"
+checksum=992ea538ea858f9fb196b39de2276ce3048c731965e144e6288202abed109782
+
+pre_configure() {
+	./autogen.sh
+}
+
+do_install() {
+	# Installs the binary
+	vbin src/dosbox-x	
+}
